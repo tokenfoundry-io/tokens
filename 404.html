@@ -1,0 +1,13 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Loading…</title><style>body{margin:0;background:#0b0d12;color:#9aa3b2;font:16px system-ui,sans-serif;
+display:grid;place-items:center;min-height:100vh}</style></head>
+<body><p id="msg">Loading…</p>
+<script>
+// Pagina appena pubblicata e non ancora costruita da GitHub Pages: la si prende da raw e la si mostra
+const slug = location.pathname.split("/").filter(Boolean).pop();
+fetch(`https://raw.githubusercontent.com/tokenfoundry-io/tokens/HEAD/${encodeURIComponent(slug)}/index.html`, {cache: "no-store"})
+  .then(r => r.ok ? r.text() : Promise.reject(r.status))
+  .then(html => { document.open(); document.write(html); document.close(); })
+  .catch(() => { document.getElementById("msg").textContent = "Page not found"; });
+</script></body></html>
